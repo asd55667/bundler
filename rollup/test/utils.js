@@ -448,7 +448,7 @@ exports.replaceDirectoryInStringifiedObject = function replaceDirectoryInStringi
 	);
 };
 
-/** @type {boolean} */
+/** @type {boolean} FIXME: */
 exports.hasEsBuild = existsSync(path.join(__dirname, '../dist/es'));
 
 const acornParser = Parser.extend(importAssertions);
