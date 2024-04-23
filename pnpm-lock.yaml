@@ -6,6 +6,8 @@ settings:
 
 importers:
 
+  .: {}
+
   rollup:
     devDependencies:
       '@rollup/plugin-alias':
@@ -35,6 +37,9 @@ importers:
       '@rollup/pluginutils':
         specifier: ^5.1.0
         version: 5.1.0(rollup@4.16.2)
+      '@types/mocha':
+        specifier: ^10.0.6
+        version: 10.0.6
       '@types/node':
         specifier: ^20.12.7
         version: 20.12.7
@@ -262,7 +267,7 @@ packages:
     dev: true
 
   /@rollup/rollup-android-arm-eabi@4.16.2:
-    resolution: {integrity: sha512-VGodkwtEuZ+ENPz/CpDSl091koMv8ao5jHVMbG1vNK+sbx/48/wVzP84M5xSfDAC69mAKKoEkSo+ym9bXYRK9w==}
+    resolution: {integrity: sha512-VGodkwtEuZ+ENPz/CpDSl091koMv8ao5jHVMbG1vNK+sbx/48/wVzP84M5xSfDAC69mAKKoEkSo+ym9bXYRK9w==, tarball: https://registry.npmmirror.com/@rollup/rollup-android-arm-eabi/-/rollup-android-arm-eabi-4.16.2.tgz}
     cpu: [arm]
     os: [android]
     requiresBuild: true
@@ -270,7 +275,7 @@ packages:
     optional: true
 
   /@rollup/rollup-android-arm64@4.16.2:
-    resolution: {integrity: sha512-5/W1xyIdc7jw6c/f1KEtg1vYDBWnWCsLiipK41NiaWGLG93eH2edgE6EgQJ3AGiPERhiOLUqlDSfjRK08C9xFg==}
+    resolution: {integrity: sha512-5/W1xyIdc7jw6c/f1KEtg1vYDBWnWCsLiipK41NiaWGLG93eH2edgE6EgQJ3AGiPERhiOLUqlDSfjRK08C9xFg==, tarball: https://registry.npmmirror.com/@rollup/rollup-android-arm64/-/rollup-android-arm64-4.16.2.tgz}
     cpu: [arm64]
     os: [android]
     requiresBuild: true
@@ -278,7 +283,7 @@ packages:
     optional: true
 
   /@rollup/rollup-darwin-arm64@4.16.2:
-    resolution: {integrity: sha512-vOAKMqZSTbPfyPVu1jBiy+YniIQd3MG7LUnqV0dA6Q5tyhdqYtxacTHP1+S/ksKl6qCtMG1qQ0grcIgk/19JEA==}
+    resolution: {integrity: sha512-vOAKMqZSTbPfyPVu1jBiy+YniIQd3MG7LUnqV0dA6Q5tyhdqYtxacTHP1+S/ksKl6qCtMG1qQ0grcIgk/19JEA==, tarball: https://registry.npmmirror.com/@rollup/rollup-darwin-arm64/-/rollup-darwin-arm64-4.16.2.tgz}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
@@ -286,7 +291,7 @@ packages:
     optional: true
 
   /@rollup/rollup-darwin-x64@4.16.2:
-    resolution: {integrity: sha512-aIJVRUS3Dnj6MqocBMrcXlatKm64O3ITeQAdAxVSE9swyhNyV1dwnRgw7IGKIkDQofatd8UqMSyUxuFEa42EcA==}
+    resolution: {integrity: sha512-aIJVRUS3Dnj6MqocBMrcXlatKm64O3ITeQAdAxVSE9swyhNyV1dwnRgw7IGKIkDQofatd8UqMSyUxuFEa42EcA==, tarball: https://registry.npmmirror.com/@rollup/rollup-darwin-x64/-/rollup-darwin-x64-4.16.2.tgz}
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
@@ -294,79 +299,88 @@ packages:
     optional: true
 
   /@rollup/rollup-linux-arm-gnueabihf@4.16.2:
-    resolution: {integrity: sha512-/bjfUiXwy3P5vYr6/ezv//Yle2Y0ak3a+Av/BKoi76nFryjWCkki8AuVoPR7ZU/ckcvAWFo77OnFK14B9B5JsA==}
+    resolution: {integrity: sha512-/bjfUiXwy3P5vYr6/ezv//Yle2Y0ak3a+Av/BKoi76nFryjWCkki8AuVoPR7ZU/ckcvAWFo77OnFK14B9B5JsA==, tarball: https://registry.npmmirror.com/@rollup/rollup-linux-arm-gnueabihf/-/rollup-linux-arm-gnueabihf-4.16.2.tgz}
     cpu: [arm]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
 
   /@rollup/rollup-linux-arm-musleabihf@4.16.2:
-    resolution: {integrity: sha512-S24b+tJHwpq2TNRz9T+r71FjMvyBBApY8EkYxz8Cwi/rhH6h+lu/iDUxyc9PuHf9UvyeBFYkWWcrDahai/NCGw==}
+    resolution: {integrity: sha512-S24b+tJHwpq2TNRz9T+r71FjMvyBBApY8EkYxz8Cwi/rhH6h+lu/iDUxyc9PuHf9UvyeBFYkWWcrDahai/NCGw==, tarball: https://registry.npmmirror.com/@rollup/rollup-linux-arm-musleabihf/-/rollup-linux-arm-musleabihf-4.16.2.tgz}
     cpu: [arm]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     dev: true
     optional: true
 
   /@rollup/rollup-linux-arm64-gnu@4.16.2:
-    resolution: {integrity: sha512-UN7VAXLyeyGbCQWiOtQN7BqmjTDw1ON2Oos4lfk0YR7yNhFEJWZiwGtvj9Ay4lsT/ueT04sh80Sg2MlWVVZ+Ug==}
+    resolution: {integrity: sha512-UN7VAXLyeyGbCQWiOtQN7BqmjTDw1ON2Oos4lfk0YR7yNhFEJWZiwGtvj9Ay4lsT/ueT04sh80Sg2MlWVVZ+Ug==, tarball: https://registry.npmmirror.com/@rollup/rollup-linux-arm64-gnu/-/rollup-linux-arm64-gnu-4.16.2.tgz}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
 
   /@rollup/rollup-linux-arm64-musl@4.16.2:
-    resolution: {integrity: sha512-ZBKvz3+rIhQjusKMccuJiPsStCrPOtejCHxTe+yWp3tNnuPWtyCh9QLGPKz6bFNFbwbw28E2T6zDgzJZ05F1JQ==}
+    resolution: {integrity: sha512-ZBKvz3+rIhQjusKMccuJiPsStCrPOtejCHxTe+yWp3tNnuPWtyCh9QLGPKz6bFNFbwbw28E2T6zDgzJZ05F1JQ==, tarball: https://registry.npmmirror.com/@rollup/rollup-linux-arm64-musl/-/rollup-linux-arm64-musl-4.16.2.tgz}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     dev: true
     optional: true
 
   /@rollup/rollup-linux-powerpc64le-gnu@4.16.2:
-    resolution: {integrity: sha512-LjMMFiVBRL3wOe095vHAekL4b7nQqf4KZEpdMWd3/W+nIy5o9q/8tlVKiqMbfieDypNXLsxM9fexOxd9Qcklyg==}
+    resolution: {integrity: sha512-LjMMFiVBRL3wOe095vHAekL4b7nQqf4KZEpdMWd3/W+nIy5o9q/8tlVKiqMbfieDypNXLsxM9fexOxd9Qcklyg==, tarball: https://registry.npmmirror.com/@rollup/rollup-linux-powerpc64le-gnu/-/rollup-linux-powerpc64le-gnu-4.16.2.tgz}
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
 
   /@rollup/rollup-linux-riscv64-gnu@4.16.2:
-    resolution: {integrity: sha512-ohkPt0lKoCU0s4B6twro2aft+QROPdUiWwOjPNTzwTsBK5w+2+iT9kySdtOdq0gzWJAdiqsV4NFtXOwGZmIsHA==}
+    resolution: {integrity: sha512-ohkPt0lKoCU0s4B6twro2aft+QROPdUiWwOjPNTzwTsBK5w+2+iT9kySdtOdq0gzWJAdiqsV4NFtXOwGZmIsHA==, tarball: https://registry.npmmirror.com/@rollup/rollup-linux-riscv64-gnu/-/rollup-linux-riscv64-gnu-4.16.2.tgz}
     cpu: [riscv64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
 
   /@rollup/rollup-linux-s390x-gnu@4.16.2:
-    resolution: {integrity: sha512-jm2lvLc+/gqXfndlpDw05jKvsl/HKYxUEAt1h5UXcMFVpO4vGpoWmJVUfKDtTqSaHcCNw1his1XjkgR9aort3w==}
+    resolution: {integrity: sha512-jm2lvLc+/gqXfndlpDw05jKvsl/HKYxUEAt1h5UXcMFVpO4vGpoWmJVUfKDtTqSaHcCNw1his1XjkgR9aort3w==, tarball: https://registry.npmmirror.com/@rollup/rollup-linux-s390x-gnu/-/rollup-linux-s390x-gnu-4.16.2.tgz}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
 
   /@rollup/rollup-linux-x64-gnu@4.16.2:
-    resolution: {integrity: sha512-oc5/SlITI/Vj/qL4UM+lXN7MERpiy1HEOnrE+SegXwzf7WP9bzmZd6+MDljCEZTdSY84CpvUv9Rq7bCaftn1+g==}
+    resolution: {integrity: sha512-oc5/SlITI/Vj/qL4UM+lXN7MERpiy1HEOnrE+SegXwzf7WP9bzmZd6+MDljCEZTdSY84CpvUv9Rq7bCaftn1+g==, tarball: https://registry.npmmirror.com/@rollup/rollup-linux-x64-gnu/-/rollup-linux-x64-gnu-4.16.2.tgz}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
 
   /@rollup/rollup-linux-x64-musl@4.16.2:
-    resolution: {integrity: sha512-/2VWEBG6mKbS2itm7hzPwhIPaxfZh/KLWrYg20pCRLHhNFtF+epLgcBtwy3m07bl/k86Q3PFRAf2cX+VbZbwzQ==}
+    resolution: {integrity: sha512-/2VWEBG6mKbS2itm7hzPwhIPaxfZh/KLWrYg20pCRLHhNFtF+epLgcBtwy3m07bl/k86Q3PFRAf2cX+VbZbwzQ==, tarball: https://registry.npmmirror.com/@rollup/rollup-linux-x64-musl/-/rollup-linux-x64-musl-4.16.2.tgz}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     dev: true
     optional: true
 
   /@rollup/rollup-win32-arm64-msvc@4.16.2:
-    resolution: {integrity: sha512-Wg7ANh7+hSilF0lG3e/0Oy8GtfTIfEk1327Bw8juZOMOoKmJLs3R+a4JDa/4cHJp2Gs7QfCDTepXXcyFD0ubBg==}
+    resolution: {integrity: sha512-Wg7ANh7+hSilF0lG3e/0Oy8GtfTIfEk1327Bw8juZOMOoKmJLs3R+a4JDa/4cHJp2Gs7QfCDTepXXcyFD0ubBg==, tarball: https://registry.npmmirror.com/@rollup/rollup-win32-arm64-msvc/-/rollup-win32-arm64-msvc-4.16.2.tgz}
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
@@ -374,7 +388,7 @@ packages:
     optional: true
 
   /@rollup/rollup-win32-ia32-msvc@4.16.2:
-    resolution: {integrity: sha512-J/jCDKVMWp0Y2ELnTjpQFYUCUWv1Jr+LdFrJVZtdqGyjDo0PHPa7pCamjHvJel6zBFM3doFFqAr7cmXYWBAbfw==}
+    resolution: {integrity: sha512-J/jCDKVMWp0Y2ELnTjpQFYUCUWv1Jr+LdFrJVZtdqGyjDo0PHPa7pCamjHvJel6zBFM3doFFqAr7cmXYWBAbfw==, tarball: https://registry.npmmirror.com/@rollup/rollup-win32-ia32-msvc/-/rollup-win32-ia32-msvc-4.16.2.tgz}
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
@@ -382,7 +396,7 @@ packages:
     optional: true
 
   /@rollup/rollup-win32-x64-msvc@4.16.2:
-    resolution: {integrity: sha512-3nIf+SJMs2ZzrCh+SKNqgLVV9hS/UY0UjT1YU8XQYFGLiUfmHYJ/5trOU1XSvmHjV5gTF/K3DjrWxtyzKKcAHA==}
+    resolution: {integrity: sha512-3nIf+SJMs2ZzrCh+SKNqgLVV9hS/UY0UjT1YU8XQYFGLiUfmHYJ/5trOU1XSvmHjV5gTF/K3DjrWxtyzKKcAHA==, tarball: https://registry.npmmirror.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.16.2.tgz}
     cpu: [x64]
     os: [win32]
     requiresBuild: true
@@ -418,6 +432,10 @@ packages:
 
   /@types/minimatch@5.1.2:
     resolution: {integrity: sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==}
+    dev: true
+
+  /@types/mocha@10.0.6:
+    resolution: {integrity: sha512-dJvrYWxP/UcXm36Qn36fxhUKu8A/xMRXVT2cliFF1Z7UA9liG5Psj3ezNSZw+5puH2czDXRLcXQxf8JbJt0ejg==, tarball: https://registry.npmmirror.com/@types/mocha/-/mocha-10.0.6.tgz}
     dev: true
 
   /@types/node@20.12.7:
@@ -767,7 +785,7 @@ packages:
     dev: true
 
   /fsevents@2.3.3:
-    resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
+    resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==, tarball: https://registry.npmmirror.com/fsevents/-/fsevents-2.3.3.tgz}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
     requiresBuild: true
@@ -1255,7 +1273,7 @@ packages:
     dev: true
 
   /typescript@5.4.5:
-    resolution: {integrity: sha512-vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==}
+    resolution: {integrity: sha512-vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==, tarball: https://registry.npmmirror.com/typescript/-/typescript-5.4.5.tgz}
     engines: {node: '>=14.17'}
     hasBin: true
     dev: true

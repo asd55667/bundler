@@ -1,4 +1,4 @@
-# personal web-bundler practice
+# web-bundler practice
 
 ## Rollup@4.16.2
 

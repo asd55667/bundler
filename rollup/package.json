@@ -20,6 +20,7 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
     "@rollup/pluginutils": "^5.1.0",
+    "@types/mocha": "^10.0.6",
     "@types/node": "^20.12.7",
     "acorn": "^8.11.3",
     "acorn-import-assertions": "^1.9.0",
@@ -38,7 +39,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "volta": {
     "node": "20.12.2"
   }
