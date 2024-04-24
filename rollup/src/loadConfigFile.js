@@ -1,15 +1,19 @@
 /**
+ * @typedef {import('./rollup').RollupOptions} RollupOptions
+ */
+
+/**
  * 
  * @param {string} path 
  * @param {any} config 
- * @param {boolean=} watchMode 
+ * @param {boolean=} _watchMode 
  * @returns 
  */
-async function loadConfigFile(path, config, watchMode) {
+async function loadConfigFile(path, config, _watchMode) {
     let options
     let option = (await importWithConfig(path, config))?.default
 
-    if (typeof option === 'function') option = option(process.args)
+    if (typeof option === 'function') option = option(process.argv)
 
     options = Array.isArray(option) ? option.map(normalizeOption) : [normalizeOption(option)]
 
@@ -23,6 +27,12 @@ async function loadConfigFile(path, config, watchMode) {
     }
 }
 
+/**
+ * 
+ * @param {string} path 
+ * @param {any} config 
+ * @returns 
+ */
 async function importWithConfig(path, config) {
     let option
     if (config?.configPlugin) {
@@ -31,6 +41,7 @@ async function importWithConfig(path, config) {
             option = (await import(path)).default
             option = { default: plugin.transform(option) }
         } catch (err) {
+            if (!(err instanceof Error)) throw err
             const message = 'module is not defined in ES module scope'
             const msg = err.message
             if (msg.startsWith(message)) {
@@ -47,6 +58,8 @@ async function importWithConfig(path, config) {
         try {
             option = (await import(path))
         } catch (err) {
+            if (!(err instanceof Error)) throw err
+
             const message = err.message
             if (message.startsWith(`Unexpected token 'export'`)) {
                 throw {
@@ -65,6 +78,11 @@ async function importWithConfig(path, config) {
     return option
 }
 
+/**
+ * 
+ * @param {RollupOptions} option 
+ * @returns {RollupOptions}
+ */
 function normalizeOption(option) {
     if (!option?.external) option.external = []
     if (!option.plugins || !option.plugins?.length) option.plugins = [{ name: 'stdin' }]
@@ -76,6 +94,11 @@ function normalizeOption(option) {
     return option
 }
 
+/**
+ * 
+ * @param {RollupOptions['output']} output 
+ * @returns {RollupOptions['output']}
+ */
 function normalizeOutput(output) {
     if (!output.plugins) output.plugins = []
     return output

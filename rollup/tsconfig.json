@@ -2,8 +2,10 @@
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
 		"forceConsistentCasingInFileNames": true,
+		"outDir": "out",
 		"module": "ESNext",
 		"moduleResolution": "Bundler",
+		"checkJs": true,
 		"noEmitOnError": true,
 		"noUnusedParameters": true,
 		"pretty": true,

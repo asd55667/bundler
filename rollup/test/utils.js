@@ -1,8 +1,8 @@
 /**
- * @typedef {import('../src/rollup/types').RollupError} RollupError
- * @typedef {import('../src/rollup/types').RollupLog} RollupLog
- * @typedef {import('../src/rollup/types').LogLevel} LogLevel
- * @typedef {import('../src/rollup/types').Plugin} Plugin
+ * @typedef {import('../src/rollup').RollupError} RollupError
+ * @typedef {import('../src/rollup').RollupLog} RollupLog
+ * @typedef {import('../src/rollup').LogLevel} LogLevel
+ * @typedef {import('../src/rollup').Plugin} Plugin
  * @typedef {import('./types').TestConfigBase} TestConfigBase
  */
 
