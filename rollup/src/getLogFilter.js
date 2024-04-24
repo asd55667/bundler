@@ -1,5 +1,6 @@
 /**
  * @typedef {import('./rollup').RollupLog} RollupLog
+ * @typedef {import('./rollup').ObjectRule} ObjectRule
  */
 
 /**
@@ -62,16 +63,19 @@ function check(filter, log) {
 /**
  * 
  * @param {string} filter 
- * @returns {[string, string | Record<string, any>]}
+ * @returns {[string, string | ObjectRule]}
  */
 function splitRule(filter) {
     let key = ''
 
     let i = 0
     while (filter[i] !== ':') key += filter[i++]
-    /** @type {string | Record<string, any>} */
+    /** @type {string | ObjectRule} */
     let rule = filter.slice(i + 1).trim()
-    if (rule[0] === '{') rule = parseObjectRule(rule)
+
+    if (rule[0] === '{') {
+        rule = parseObjectRule(rule)
+    }
 
     return [key.trim(), rule]
 }
@@ -79,25 +83,92 @@ function splitRule(filter) {
 /**
  * 
  * @param {string} rule 
- * @returns {Record<string, any>}
+ * @param {ObjectRule} result
+ * @returns {ObjectRule}
  */
-function parseObjectRule(rule) {
-    
-    return {}
+function parseObjectRule(rule, result = []) {
+    let i = 1
+
+    let key = null
+    let value = null
+    while (i < rule.length && rule[i] !== '}') {
+        const ch = rule[i]
+
+        if (ch === ',') {
+            if (key && value) {
+                result.push(normalizeObjectRule(key, value))
+            }
+            else if (key?.trim() === '*' && !value) result.push('*')
+            else throw new Error('parse error with object rule.')
+            key = null
+            value = null
+            i++
+            continue
+        }
+
+        if (key === null) key = ''
+
+        if (ch === ':') {
+            value = ''
+            i++
+            continue
+        }
+
+        if (value === null && typeof key === 'string') key += ch
+
+        if (typeof value === 'string') value += ch
+
+        i++
+    }
+    if (key && value) result.push(normalizeObjectRule(key, value))
+    else if (key?.trim() === '*') result.push('*')
+
+    return result
 }
 
 /**
  * 
- * @param {Record<string, any>} rule 
+ * @param {string} key 
+ * @param {string} value 
+ * @returns {[string, unknown]}
+ */
+function normalizeObjectRule(key, value) {
+    key = key.trim()
+    key = key[0] === '"' || key[0] === "'" ? JSON.parse(key) : key
+    return [key, JSON.parse(value.trim())]
+}
+/**
+ * 
+ * @param {ObjectRule} rule 
  * @param {Record<string, any>} obj 
  * @returns {boolean}
  */
 function isObjectMatched(rule, obj) {
-    const keys = Object.keys(rule)
-    const passed = keys.map(key => obj[key] === rule[key])
-    if (keys.length === passed.length) return true
+    let i = 0
+    let j = 0
 
-    return false
+    const s = Object.keys(obj)
+
+    while (i < rule.length && j < s.length) {
+        const ch = rule[i]
+
+        if (ch === '*') {
+            if (i === rule.length - 1) return true
+            if (rule[i + 1]?.[0] === s[j] && rule[i + 1]?.[1] === obj[s[j]]) i++
+            else j++
+            continue
+        }
+
+        if (ch?.[0] !== s[j] || ch?.[1] !== obj[s[j]]) return false
+
+        i++;
+        j++
+    }
+
+    if (rule[i] === '*') i++
+
+    return i === rule.length && j === s.length
+
 }
 
 /**
@@ -128,7 +199,6 @@ function isStringMatched(rule, s) {
     }
 
     if (rule[i] === '*') i++
-    if (s[j] === '*') j++
 
     return i === rule.length && j === s.length
 }

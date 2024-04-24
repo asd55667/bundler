@@ -52,9 +52,9 @@ describe('getLogFilter', () => {
 		assert.strictEqual(filter({ foo: 10 }), false, 'foo:10');
 		assert.strictEqual(filter({ bar: 123 }), true, 'bar:123');
 		assert.strictEqual(filter({ bar: 13 }), false, 'bar:13');
-		// assert.strictEqual(filter({ baz: { a: 1 } }), true, 'baz:{"a":1}');
-		// assert.strictEqual(filter({ baz: { a: 1, b: 2 } }), false, 'baz:{"a":1,"b":2}');
-		// assert.strictEqual(filter({ baz: { b: 1, c: 2 } }), true, 'baz:{"b":1,"c":2}');
+		assert.strictEqual(filter({ baz: { a: 1 } }), true, 'baz:{"a":1}');
+		assert.strictEqual(filter({ baz: { a: 1, b: 2 } }), false, 'baz:{"a":1,"b":2}');
+		assert.strictEqual(filter({ baz: { b: 1, c: 2 } }), true, 'baz:{"b":1,"c":2}');
 	});
 
 	// it('handles edge case filters', () => {

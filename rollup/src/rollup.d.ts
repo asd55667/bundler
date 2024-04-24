@@ -57,3 +57,6 @@ export interface RollupOptions extends InputOptions {
   // This is included for compatibility with config files but ignored by rollup.rollup
   output?: OutputOptions | OutputOptions[];
 }
+
+
+export type ObjectRule = ('*' | [string, unknown])[]

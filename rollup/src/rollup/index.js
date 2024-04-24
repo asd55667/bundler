@@ -1,5 +1,5 @@
 /**
- * @typedef {import('./types').RollupOptions} RollupOptions
+ * @typedef {import('../rollup').RollupOptions} RollupOptions
  */
 
 /**
