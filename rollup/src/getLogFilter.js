@@ -20,7 +20,7 @@ function getLogFilter(filters) {
 
         for (const filter of filters) {
             if (filter.includes('&')) {
-                const items = filter.split('&').filter(Boolean)
+                const items = filter.split('&')
                 const passed = items.map(item => check(item, log)).filter(Boolean)
                 if (passed.length === items.length) return true
             } else if (check(filter, log)) return true
@@ -66,6 +66,8 @@ function check(filter, log) {
  * @returns {[string, string | ObjectRule]}
  */
 function splitRule(filter) {
+    if (filter === '') return ['', '']
+
     let key = ''
 
     let i = 0
