@@ -43,21 +43,41 @@ function check(filter, log) {
     const inverted = key[0] === '!'
     if (inverted) key = key.slice(1)
 
-    if (!(key in log)) return false
+    const keyNested = key.includes('.')
+    if (!keyNested && !(key in log)) return false
 
     let actual = log[/** @type {keyof RollupLog} */ (key)]
+    if (keyNested) {
+        try {
+            actual = key.split('.').reduce((prev, k) => prev[/** @type {keyof RollupLog} */(k)], log)
+        } catch (err) {
+            // nested key access failed
+            return false
+        }
+    }
+
     if (typeof actual === 'number' || actual === null || actual === undefined) {
         actual = String(actual)
     }
 
-    let matched = false
-    if (typeof rule === 'string') matched = isStringMatched(rule, actual)
-    else if (typeof rule === 'object') matched = isObjectMatched(rule, actual)
+    const matched = isMatched(rule, actual)
 
     if (inverted && !matched) return true
     if (!inverted && matched) return true
 
     return false
+}
+
+/**
+ * 
+ * @param {string | ObjectRule} rule 
+ * @param {*} actual 
+ */
+function isMatched(rule, actual) {
+    let matched = false
+    if (typeof rule === 'string') matched = isStringMatched(rule, actual)
+    else if (typeof rule === 'object') matched = isObjectMatched(rule, actual)
+    return matched
 }
 
 /**
@@ -95,6 +115,10 @@ function parseObjectRule(rule, result = []) {
     let value = null
     while (i < rule.length && rule[i] !== '}') {
         const ch = rule[i]
+
+        if (ch === '{') {
+            // TODO: nested object rule
+        }
 
         if (ch === ',') {
             if (key && value) {

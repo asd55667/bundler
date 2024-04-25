@@ -75,11 +75,11 @@ describe('getLogFilter', () => {
 		assert.strictEqual(filter({ foo: 'bar:baz' }), true, 'foo:bar:baz');
 	});
 
-	// it('handles nested properties', () => {
-	// 	const filter = getLogFilter(['foo.bar:baz']);
-	// 	assert.strictEqual(filter({ foo: null }), false, 'foo:bar');
-	// 	assert.strictEqual(filter({ foo: { bar: 'baz' } }), true, 'foo.bar:baz');
-	// 	assert.strictEqual(filter({ foo: { bar: 'qux' } }), false, 'foo.bar:qux');
-	// 	assert.strictEqual(filter({ foo: { bar: { baz: 'qux' } } }), false, 'foo.bar.baz:qux');
-	// });
+	it('handles nested properties', () => {
+		const filter = getLogFilter(['foo.bar:baz']);
+		assert.strictEqual(filter({ foo: null }), false, 'foo:bar');
+		assert.strictEqual(filter({ foo: { bar: 'baz' } }), true, 'foo.bar:baz');
+		assert.strictEqual(filter({ foo: { bar: 'qux' } }), false, 'foo.bar:qux');
+		assert.strictEqual(filter({ foo: { bar: { baz: 'qux' } } }), false, 'foo.bar.baz:qux');
+	});
 });
