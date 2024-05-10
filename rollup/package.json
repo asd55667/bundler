@@ -7,7 +7,9 @@
     "test": "test"
   },
   "scripts": {
+    "test": "npm run test:internal && npm run test:quick",
     "test:quick": "mocha -b test/test.js",
+    "test:internal": "mocha src/test/**",
     "test:update-snapshots": "node scripts/update-snapshots.js"
   },
   "devDependencies": {
