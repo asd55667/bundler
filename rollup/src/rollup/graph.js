@@ -27,7 +27,6 @@ class GraphNode {
  * @typedef {(el:T) => string} HasFn
  */
 
-
 const _findCycle = Symbol('findCycle')
 /**
  * @template T
@@ -141,23 +140,29 @@ class BaseGraph {
 }
 
 /**
+ * @typedef {import('../rollup').GraphOptions} GraphOptions
+ */
+
+/**
  * @template T
  * @extends BaseGraph<T>
  */
 class Graph extends BaseGraph {
-
     /**
-     * 
+     * @param {GraphOptions} options
      * @param {HasFn<T>=} _hasFn 
      */
-    constructor(_hasFn) {
+    constructor(options, _hasFn) {
         super(_hasFn)
+        this.options = options
     }
 
+    async build() {
+        // 
+    }
 }
 
 module.exports = {
     Graph,
     GraphNode
 }
-
